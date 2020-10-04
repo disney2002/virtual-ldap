@@ -4,6 +4,6 @@ services:
   - docker
 
 script:
-  - docker build -t registry.cn-beijing.aliyuncs.com/ray-dockers/vldap:latest
+  - docker build -t registry.cn-beijing.aliyuncs.com/ray-dockers/vldap:latest .
   - docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWORD registry.cn-beijing.aliyuncs.com
   - docker push registry.cn-beijing.aliyuncs.com/ray-dockers/vldap:latest
