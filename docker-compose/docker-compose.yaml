@@ -11,11 +11,6 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: rootpassword
-    healthcheck:
-      test: "/usr/bin/mysql --user=root --password=rootpassword --execute \"SHOW DATABASES;\""
-      interval: 5s
-      timeout: 1s
-      retries: 5
 
   virutal-ldap:
     image: registry.cn-beijing.aliyuncs.com/ray-dockers/vldap:latest
@@ -24,8 +19,5 @@ services:
       - 1389:1389
     volumes:
       - ./config.js:/app/config.js
-    depends_on:
-      mysql:
-        condition: service_healthy
     links:
       - 'mysql'

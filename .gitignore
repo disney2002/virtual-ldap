@@ -60,3 +60,6 @@ typings/
 cache
 /config.js
 .DS_Store
+
+docker-compose/mysql_data/
+docker-compose/config.js
