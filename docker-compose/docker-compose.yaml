@@ -21,3 +21,21 @@ services:
       - ./config.js:/app/config.js
     links:
       - 'mysql'
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:latest
+    restart: always
+    environment:
+      DB_VENDOR: MYSQL
+      DB_ADDR: mysql
+      DB_DATABASE: keycloak
+      DB_USER: keycloak
+      DB_PASSWORD: keycloakPass
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: admin
+      # Uncomment the line below if you want to specify JDBC parameters. The parameter below is just an example, and it shouldn't be used in production without knowledge. It is highly recommended that you read the MySQL JDBC driver documentation in order to use it.
+      #JDBC_PARAMS: "connectTimeout=30000"
+    ports:
+      - 8080:8080
+    depends_on:
+      - mysql
