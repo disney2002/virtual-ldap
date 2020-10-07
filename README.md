@@ -1,3 +1,27 @@
+# About
+
+This project is based on two repos: ohdarling/virtual-ldap and anjia0532/virtual-ldap, thanks to the authors. This projects aims to use Dingtalk as unified anthentication for internal system.
+
+* ohdarling/virtual-ldap is the original repo which implements Ldap service and use DingTalk as authorization service.
+* I found anjia0532/virtual-ldap is in the first project pull request, it implements Dockerfile, generate random password and add pinyin field in the ldap tree.
+
+Based on this two projects, I implement following features:
+
+* Implement docker compose yaml with virutal-ldap, mysql and Keycloak, the detailed usage you can follow this link: https://xujiwei.com/blog/2020/02/internal-authorize-based-on-dingtalk-virtual-ldap-keyclaok/
+* For our own company scenario, I fix the password rule. The default uid is pinyin(only keep lower chars) with the last four numbers of cell phone. The default password is pinyin(only keep lower chars) with the first four numbers of cell phone. User can reset password in Keycloak during first login.
+* Fix user authentication, first check database and then check the attribute in ldap tree.
+
+这个项目是基于ohdarling/virtual-ldap和anjia0532/virtual-ldap项目实现的，感谢原作者。目的为了满足使用钉钉作为统一鉴权方式为内部系统提供鉴权服务。
+
+* ohdarling/virtual-ldap项目实现了Ldap服务以及通过钉钉同步信息，作为统一鉴权系统使用。
+* anjia0532/virtual-ldap项目实际上是在上一个项目的pull request找到的，但是由于没有合并到主干，所以作者独立进行了开发。这个项目主要为了实现容器化，并且采用了随机生成密码和增加pinyin字段。
+
+基于这两个项目，我进一步开发了下面的功能：
+
+* 实现了docker-compose，可以编排virtual-ldap, mysql和Keycloak，具体的使用方法可以参考原作者的https://xujiwei.com/blog/2020/02/internal-authorize-based-on-dingtalk-virtual-ldap-keyclaok/comment-page-1/#comment-189642
+* 基于公司使用的新场景，我修改了密码产生的规则。默认uid是使用拼音名称和电话号码后四位，默认密码是拼音和电话号码前四位。用户可以使用Keycloak在第一次登陆前修改密码。
+* 修改用户鉴权规则，首先检查数据库里的密码，再检查ldap的属性字段。
+
 # Virtual-LDAP
 
 Virtual-LDAP is a service used to bridge any other account services to the LDAP protocol. With Virtual-LDAP, you can use existing account services (such as DingTalk) as an authorization service for many open source projects.
